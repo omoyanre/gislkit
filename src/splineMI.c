@@ -329,6 +329,28 @@ double mi2(const double *x, const double *y, int n, int bin, int so, int norm, i
 
 //========================= export R function ===================================
 
+
+
+
+void EntOne(const double *x, int *n, int *bin, int *so, double *EntOut){
+  double *u = (double*) calloc(*bin + *so, sizeof(double));
+  double *wx = (double*) calloc(*bin * *n, sizeof(double));
+  double e1x;
+
+  knotVector(u, *bin, *so);
+  findWeights(x, u, wx, *n, *so, *bin, -1, -1);
+  e1x = entropy1(wx, *n, *bin);
+  *EntOut = ex1;
+}
+
+
+
+
+
+
+
+
+
 void mi2R(const double *x, const double *y, int *n, int *bin, int *so, double *miOut, int *norm, int *negateMI){
   double *u = (double*) calloc(*bin + *so, sizeof(double));
   double *wx = (double*) calloc(*bin * *n, sizeof(double));
