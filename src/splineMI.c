@@ -604,3 +604,26 @@ void centropy2R(const double *x, const double *y, int *n, int *bin, int *so, dou
 }
 
 
+
+
+void EntOne(const double *x, int *n, int *bin, int *so, double *eOut){
+  double *u = (double*) calloc(*bin + *so, sizeof(double));
+  double *wx = (double*) calloc(*bin * *n, sizeof(double));
+  double entropy;
+
+  knotVector(u, *bin, *so);
+  findWeights(x, u, wx, *n, *so, *bin, -1, -1);
+  entropy = entropy2(wx, *n, *bin);
+
+  free(wx);
+  free(u);
+  *eOut = entropy;
+}
+
+
+
+
+
+
+
+
